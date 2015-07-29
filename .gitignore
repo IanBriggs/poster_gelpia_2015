@@ -1,3 +1,6 @@
+## Main generated file
+poster.pdf
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -124,3 +127,6 @@ sympy-plots-for-*.tex/
 # WinEdt
 *.bak
 *.sav
+
+# Mac
+.DS_STORE
