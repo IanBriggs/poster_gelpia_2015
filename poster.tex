@@ -1,4 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % baposter Landscape Poster
 % LaTeX Template
 % Version 1.0 (11/06/13)
@@ -12,14 +12,15 @@
 % License:
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
 %	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
-%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
 
 \documentclass[landscape,a0paper,fontscale=0.285]{baposter} % Adjust the font scale/size here
 
+\usepackage{wrapfig}
 \usepackage{graphicx} % Required for including images
 \graphicspath{{figures/}} % Directory in which figures are stored
 
@@ -29,7 +30,7 @@
 \usepackage{booktabs} % Top and bottom rules for tables
 \usepackage{enumitem} % Used to reduce itemize/enumerate spacing
 \usepackage{palatino} % Use the Palatino font
-\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage[font=small,labelfont=bf]{caption} % Required for setting captions to tables and figures
 
 \usepackage{multicol} % Required for multiple columns
 \setlength{\columnsep}{1.5em} % Slightly increase the space between columns
@@ -38,7 +39,9 @@
 \usepackage{tikz} % Required for flow chart
 \usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
 
-\newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
+% Define a command to reduce spacing within itemize/enumerate environments,
+% this is used right after \begin{itemize} or \begin{enumerate}
+\newcommand{\compresslist}{
 \setlength{\itemsep}{1pt}
 \setlength{\parskip}{0pt}
 \setlength{\parsep}{0pt}
@@ -59,110 +62,101 @@ headerColorOne=black, % Background color for the header in the content boxes (le
 headerColorTwo=lightblue, % Background color for the header in the content boxes (right side)
 headerFontColor=white, % Text color for the header text in the content boxes
 boxColorOne=white, % Background color of the content boxes
-textborder=roundedleft, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
+% Format of the border around content boxes,
+% can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
+textborder=roundedleft,
 eyecatcher=true, % Set to false for ignoring the left logo in the title and move the title left
 headerheight=0.1\textheight, % Height of the header
-headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+% Specify the rounded corner in the content box headers,
+% can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+headershape=roundedright,
 headerfont=\Large\bf\textsc, % Large, bold and sans serif font in the headers of content boxes
 %textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
 linewidth=2pt % Width of the border lines around content boxes
 }
-%----------------------------------------------------------------------------------------
-%	TITLE SECTION 
-%----------------------------------------------------------------------------------------
-%
-{\includegraphics[height=4em]{logo.png}} % First university/lab logo on the left
+%----------------------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------------------
+{\includegraphics[height=4em]{left_logo}} % First university/lab logo on the left
 {\bf\textsc{<Title>}\vspace{0.5em}} % Poster title
-{\textsc{\{ Mark Baranowski, Ian Briggs, Ganesh Gopalakrishnan\} \hspace{12pt} University of Utah School of Computing}} % Author names and institution
-{\includegraphics[height=4em]{logo.png}} % Second university/lab logo on the right
+{\textsc{ {\large \{Mark Baranowski, Ian Briggs, Ganesh Gopalakrishnan, Zvonimir Rakamaric\}}
+    \hspace{12pt} University of Utah School of Computing}} % Authors and institution
+{\includegraphics[height=4em]{right_logo}} % Second university/lab logo on the right
 
 
-%----------------------------------------------------------------------------------------
-%	BoxOne
-%----------------------------------------------------------------------------------------
 
-\headerbox{<BoxOne>}{name=BoxOne,column=0,row=0}{
 
-\vspace{2in} % remove once there is content
 
-%\vspace{0.3em} % When there are two boxes, some whitespace may need to be added if the one on the right has more content
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------------------
+% Introduction/Motivation
+%----------------------------------------------------------------------------------------------------
+\headerbox{Motivation}{name=BoxOne,column=0}{
+  % Intro/Motivation can be the importance of glob opt in many contexts including
+  % FP error bounding and FP error bounding can be motivated via its relevance to
+  % HPC code precision tuning
+
+  Floating point computation is inherently flawed. Each operation carries with it an error term
+  that, with many operations compounding, can cause tremendous error in the output. When using
+  floating point arithmetic one must be aware of the magnatude of the error in the computation being
+  done. This is where floating point error bounding comes into play. It can be used to give tight
+  upper bounds to computations, such as those used in high powered computing. To power this bounding
+  is global optimzation utilizing interval arithmatic.
+
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
 }
 
 
 
 
 
-%----------------------------------------------------------------------------------------
-%	BoxTwo
-%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+% Serial Algorithm
+%----------------------------------------------------------------------------------------------------
+\headerbox{Serial Algorithm}{name=BoxTwo, column=0, below=BoxOne}{
+  The classical branch and bound algorithm utilizes the property of interval arithmatic that
+  computation of a function over an interval gives an answer bound that is guaranteed to contain the
+  real bounds of the function within the inputs given. A high water mark is used to store the highest
+  lower bound seen, and if a given input produces an output which lies completely below this mark
+  then the input can be discarded. Otherwise the input is split in half and this computation is
+  repeated on each new input. An input will also be discarded if the maximum width is below a user
+  set threshold. Once there are no more inputs to process the maximum of the function is tightly
+  bounded by the highest upper output of the inputs which were discarded due to width tolerance.
 
-\headerbox{<BoxTwo>}{name=BoxTwo,column=1,row=0}{
-
-\vspace{2in} % remove once there is content
-
-%\vspace{0.3em} % When there are two boxes, some whitespace may need to be added if the one on the right has more content
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
 }
 
 
 
 
 
-%----------------------------------------------------------------------------------------
-%	BoxThree
-%----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------
+% Parallel Algorithms
+%----------------------------------------------------------------------------------------------------
+\headerbox{Parallel Algorithms}{name=BoxThree, column=0, span=2, below=BoxTwo, above=bottom}{
+  There is considerable shared state in the traditional algorithm. The high water mark, the inputs
+  which are still to be processed, and the maximum as it is found. To midigate the problems
+  associated with shared state we experimented with various methods. One consisted of using parallel
+  map functions on a list of the inputs to be process, each map produced a list of new inputs, a list
+  of new high water marks, and a list of new solutions. The latter two were reduced to find the
+  maximum and the process repeated. Another solver split the initial input into many pieces and sent
+  those off to worker threads. When a worker thread finished work on it's input it would report back
+  to the main thread with a new water mark and maximum, if found, and the main thread would in turn
+  given the thread a new input to work on. If the new values were better than the main threads values
+  an update would be issued to all worker threads to update their local values. 
 
-\headerbox{<BoxThree>}{name=BoxThree,column=2,span=2,row=0}{
-
-\vspace{2in} % remove once there is content
-
-}
-
-
-
-
-
-
-
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	BoxFour
-%----------------------------------------------------------------------------------------
-
-\headerbox{<BoxFour>}{name=BoxFour,column=0,below=BoxOne}{ 
-
-\vspace{2.5in} % remove once there is content
-
-%\vspace{0.3em} % When there are two boxes, some whitespace may need to be added if the one on the right has more content
-}
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	BoxFive
-%----------------------------------------------------------------------------------------
-
-\headerbox{<BoxFive>}{name=BoxFive,column=1,below=BoxTwo}{ 
-
-\vspace{2.5in} % remove once there is content
-
-%\vspace{0.3em} % When there are two boxes, some whitespace may need to be added if the one on the right has more content
-}
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	BoxSix
-%----------------------------------------------------------------------------------------
-
-\headerbox{<BoxSix>}{name=BoxSix,column=2,span=2,row=0,below=BoxThree}{
-
-\vspace{2.5in} % remove once there is content
-
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
 }
 
 
@@ -179,38 +173,102 @@ linewidth=2pt % Width of the border lines around content boxes
 
 
 
+\newlength{\graphWidth}
+\setlength{\graphWidth}{3.6in}
+%----------------------------------------------------------------------------------------------------
+% Loop iteration comparison of solvers
+%----------------------------------------------------------------------------------------------------
+\headerbox{Loop Iterations}{name=BoxFour, column=1, span=2}{
+  \begin{tabular}{cp{\linewidth-\graphWidth}}
+    \includegraphics[width=\graphWidth]{graph_one} &
 
-%----------------------------------------------------------------------------------------
-%	BoxSeven
-%----------------------------------------------------------------------------------------
-
-\headerbox{<BoxSeven>}{name=BoxSeven,column=0,below=BoxFour,above=bottom}{
-
-\vspace{2in} % remove once there is content
-
-%\vspace{0.3em} % When there are two boxes, some whitespace may need to be added if the one on the right has more content
+    
+  \end{tabular}
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
 }
 
 
 
-%----------------------------------------------------------------------------------------
-%	BoxEight
-%----------------------------------------------------------------------------------------
 
-\headerbox{<BoxEight>}{name=BoxEight,column=1,below=BoxFive,above=bottom}{
 
-\vspace{2in} % remove once there is content
+%----------------------------------------------------------------------------------------------------
+% Function complexity vs time graph
+%----------------------------------------------------------------------------------------------------
+\headerbox{Function Complexity}{name=BoxFive, column=1, below=BoxFour, above=BoxThree, span=2}{
+  \begin{tabular}{p{.95\linewidth-\graphWidth}l}
+    &
 
-%\vspace{0.3em} % When there are two boxes, some whitespace may need to be added if the one on the right has more content
+    \includegraphics[width=\graphWidth]{graph_two}
+  \end{tabular}
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
 }
 
 
 
-%----------------------------------------------------------------------------------------
-%	BoxNine
-%----------------------------------------------------------------------------------------
 
-\headerbox{<BoxNine>}{name=BoxNine,column=2,span=2,below=BoxSix,above=bottom}{
+%----------------------------------------------------------------------------------------------------
+% Swig
+%----------------------------------------------------------------------------------------------------
+\headerbox{Swig}{name=BoxSix, column=2, below=BoxFive, above=bottom}{
+
+
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------------------
+% Hidden costs of python
+%----------------------------------------------------------------------------------------------------
+\headerbox{Python Oversights}{name=BoxSeven, column=3}{
+
+
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
+}
+
+
+
+
+
+%----------------------------------------------------------------------------------------------------
+% Move to rust
+%----------------------------------------------------------------------------------------------------
+\headerbox{Move to rust}{name=BoxEight, column=3, below=BoxSeven}{
+
+
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
+}
+
+
+
+%----------------------------------------------------------------------------------------------------
+% References
+%----------------------------------------------------------------------------------------------------
+
+\headerbox{References}{name=BoxNine, column=3, below=BoxEight}{
 
 \renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
 \nocite{*} % Insert publications even if they are not cited in the poster
@@ -218,15 +276,16 @@ linewidth=2pt % Width of the border lines around content boxes
 \bibliographystyle{unsrt}
 \bibliography{biblio} % Use sample.bib as the bibliography file
 }
+
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
 }
 
 
 
 
 
-
-
-%----------------------------------------------------------------------------------------
 
 \end{poster}
 
