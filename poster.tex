@@ -176,36 +176,42 @@ linewidth=2pt % Width of the border lines around content boxes
 \newlength{\graphWidth}
 \setlength{\graphWidth}{3.6in}
 %----------------------------------------------------------------------------------------------------
-% Loop iteration comparison of solvers
-%----------------------------------------------------------------------------------------------------
-\headerbox{Loop Iterations}{name=BoxFour, column=1, span=2}{
-  \begin{tabular}{cp{\linewidth-\graphWidth}}
-    \includegraphics[width=\graphWidth]{graph_one} &
-
-    
-  \end{tabular}
-  % When there are two boxes, some whitespace may need to be added if the
-  % one on the right has more content
-  % \vspace{0.3em}
-}
-
-
-
-
-
-%----------------------------------------------------------------------------------------------------
 % Function complexity vs time graph
 %----------------------------------------------------------------------------------------------------
-\headerbox{Function Complexity}{name=BoxFive, column=1, below=BoxFour, above=BoxThree, span=2}{
-  \begin{tabular}{p{.95\linewidth-\graphWidth}l}
+\headerbox{Function Complexity}{name=BoxFour, column=1, span=2}{
+  \begin{tabular}{p{.95\linewidth-\graphWidth}p{\graphWidth}}
+    The number of input variables to a function causes an exponential increase in the search space
+    and solving time. There are tricks to tame this complexity. Partitioning the function into
+    expressions which contain no overlapping variables is one example. The problem with these
+    simplifications is that they only apply to a subset of input functions. If the function cannot
+    be split into expressions it must be solved as a whole.
     &
-
-    \includegraphics[width=\graphWidth]{graph_two}
+    \raisebox{-.9\totalheight}{\includegraphics[width=\graphWidth]{graph_one}}
   \end{tabular}
   % When there are two boxes, some whitespace may need to be added if the
   % one on the right has more content
   % \vspace{0.3em}
 }
+
+
+
+
+%----------------------------------------------------------------------------------------------------
+% Loop iteration comparison of solvers
+%----------------------------------------------------------------------------------------------------
+\headerbox{Loop Iterations}{name=BoxFive, column=1, span=2, below=BoxFour, above=BoxThree}{
+  \begin{tabular}{p{\graphWidth}p{.95\linewidth-\graphWidth}}
+    \raisebox{-.9\totalheight}{\includegraphics[width=\graphWidth]{graph_two}}
+    &
+    Since there are multiple paths of inquery when the parallel solvers are running there is a
+    difference in the number of total loops involved. This indicates how smart and efficent each
+    search strategy is. This is a more reliable method of comparing solvers than wallclock time.
+  \end{tabular}
+  % When there are two boxes, some whitespace may need to be added if the
+  % one on the right has more content
+  % \vspace{0.3em}
+}
+
 
 
 
@@ -214,7 +220,12 @@ linewidth=2pt % Width of the border lines around content boxes
 % Swig
 %----------------------------------------------------------------------------------------------------
 \headerbox{Swig}{name=BoxSix, column=2, below=BoxFive, above=bottom}{
-
+  To utilize existing libraaries for performing interval arithmatic we used the MPFI library. To
+  allow for quick prototyping we elected to use python as the language for the main algorithm. In
+  order to interface these two langauge we used the Simplified Wrapper and Interface Generator, SWIG.
+  This quick prototyping allowed leway for ideas to be quickly tested before much work went into
+  them. Python was never ment to be the end target, just a way to query the field of ideas quickly
+  so a suitable algorithm could be found for the final product.
 
   % When there are two boxes, some whitespace may need to be added if the
   % one on the right has more content
@@ -240,7 +251,7 @@ linewidth=2pt % Width of the border lines around content boxes
 % Hidden costs of python
 %----------------------------------------------------------------------------------------------------
 \headerbox{Python Oversights}{name=BoxSeven, column=3}{
-
+  
 
   % When there are two boxes, some whitespace may need to be added if the
   % one on the right has more content
