@@ -1,7 +1,9 @@
 
-
 all:
-	pdflatex poster.tex && bibtex poster && pdflatex poster.tex && pdflatex poster.tex
+	pdflatex poster.tex
+
+fresh:
+	pdflatex poster.tex && bibtex poster && pdflatex poster.tex
 
 .PHONY: clean
 clean:
