@@ -82,8 +82,8 @@ columns=4
 %	TITLE SECTION
 %----------------------------------------------------------------------------------------------------
 {\includegraphics[height=4em]{left_logo}} % First university/lab logo on the left
-{\bf\textsc{Fast and Correct}\vspace{0.5em}} % Poster title
-{\textsc{ {\Large \{Mark Baranowski, Ian Briggs, Ganesh Gopalakrishnan, Zvonimir Rakamaric\}}\\
+{\bf\textsc{Scalable Parallelization of Rigorous Global Optimization}\vspace{0.5em}} % Poster title
+{\textsc{ {\Large \{Ian Briggs, Ganesh Gopalakrishnan, Zvonimir Rakamaric\}}\\
     \hspace{12pt} University of Utah School of Computing}} % Authors and institution
 {\includegraphics[height=4em]{right_logo}} % Second university/lab logo on the right
 
@@ -117,7 +117,7 @@ columns=4
   \begin{itemize}\compresslist
   \item The Large Hadron Collider had error occur when switching math libraries which caused
     missed and miss-identified collisons. \cite{bailey2013high}
-  \item The targeting program for the Patriot missle accumulated a floating point error which
+  \item The targeting program for the Patriot missile accumulated a floating point error which
     caused the death of 28 American soldiers \cite{blair1992patriot}, which accounts for $19\%$
     of U.S. casualties in the war \cite{leland2010american}.
   \end{itemize}
@@ -258,6 +258,8 @@ while\ queue.not\_empty:\ ^^J
 % Runtime comparison of solvers
 %----------------------------------------------------------------------------------------------------
 \headerbox{Runtime}{name=BoxFive, column=1, span=2, below=BoxFour}{
+  \center
+  {\large Runntimes for solving the function $\displaystyle\prod_{i=1}^{n}{x_i\cdot sin(x_i)}$}\\
   \begin{centering}\includegraphics[width=\linewidth]{graph_one}\end{centering}
   % When there are two boxes, some whitespace may need to be added if the
   % one on the right has more content
@@ -392,7 +394,7 @@ while\ queue.not\_empty:\ ^^J
 \headerbox{References}{name=BoxNine, column=3, below=BoxEight, above=bottom}{
 \renewcommand{\section}[2]{\vskip 0.05em} % Get rid of the default "References" section title
 \nocite{*} % Insert publications even if they are not cited in the poster
-\scriptsize{ % Reduce the font size in this block
+\fontsize{5.5}{7.2}\selectfont{ % Reduce the font size in this block
 \bibliographystyle{unsrt}
 \bibliography{biblio} % Use sample.bib as the bibliography file
 }

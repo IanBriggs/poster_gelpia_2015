@@ -27,13 +27,13 @@
 % For tracking purposes - this is V3.1SP - APRIL 2009
 
 \documentclass{acm_proc_article-sp}
-\usepackage{auto-pst-pdf}
+
 \usepackage{caption}
 \usepackage{amsmath}
 \usepackage{mathtools}
 \begin{document}
 
-\title{Fast and Correct}
+\title{Scalable Parallelization of Rigorous Global Optimization}
 
 
 %
@@ -99,8 +99,11 @@ Zvonimir Rakamaric\\
 
 \maketitle
 
+\section{Motivation}
+Floating point error is serious trouble. Graphical glitches are nothing compared to the real world cost of error, in both money and lives. The Large Hadron Collider, as costly endeavor, needed to disregard results due to an error in their floating point library \cite{bailey2013high}. Error in the Patriot missile targeting system caused 28 deaths in a single event. This accounts for $19\%$ of American soldiers killed in the Gulf War\cite{blair1992patriot}. FPTaylor is a tool for quantifying error in floating point calculations \cite{fm2015-sjrg}. The engine that drives this tool is global maximization of interval arithmetic.
+
 \section{Introduction}
-Interval arithmetic optimization has been a long held challenge in verification. Most techniques use heuristics to speed up the serial algorithm or a cooperative approach with multiple heterogenous processes\cite{alliot2012finding}. We have pushed forward in parallelizing the algorithm in a homogeneous manner.  
+Interval arithmetic optimization has been a long held challenge in verification. Most techniques use heuristics to speed up the serial algorithm or a cooperative approach with multiple heterogenous processes\cite{alliot2012finding}. We have pushed forward in parallelizing the algorithm in a homogeneous manner to find gains in utilizing more raw computing power.
 
 \section{Serial Algorithm}
 The interval branch and bound algorithm relies on the inclusion property of interval arithmetic. Inputs to interval arithmetic operators are in the form of ranges, and the output is also a range. This range spans all possible answers from the input ranges.
@@ -160,7 +163,7 @@ The Python implementations are only a prototyping tool and was never meant to be
 % The following two commands are all you need in the
 % initial runs of your .tex file to
 % produce the bibliography for the citations in your paper.
-\nocite{*} % Insert publications even if they are not cited in the poster
+%\nocite{*} % Insert publications even if they are not cited in the poster
 \bibliographystyle{abbrv}
 \bibliography{sigproc}  % sigproc.bib is the name of the Bibliography in this case
 % You must have a proper ".bib" file
